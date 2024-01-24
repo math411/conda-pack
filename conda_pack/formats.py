@@ -63,7 +63,7 @@ def archive(fileobj, path, arcroot, format, compress_level=4, zip_symlinks=False
         else:
             mode = 'w'
             close_file = True
-            fileobj = ParallelZSTDFileWriter(
+            fileobj = ParallelXZFileWriter(
                 fileobj, compresslevel=compress_level, n_threads=n_threads
             )
 
@@ -74,7 +74,7 @@ def archive(fileobj, path, arcroot, format, compress_level=4, zip_symlinks=False
         else:
             mode = 'w'
             close_file = True
-            fileobj = ParallelBZ2FileWriter(fileobj, compresslevel=compress_level,
+            fileobj = ParallelZSTDFileWriter(fileobj, compresslevel=compress_level,
                                             n_threads=n_threads)
 
     elif format == "squashfs":
